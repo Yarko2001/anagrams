@@ -5,39 +5,46 @@ package ua.dehtiar.task_1_1;
  */
 public class Application {
 
-  public Application() {
+  private String inputString;
+
+  public Application(String inputString) {
+    this.inputString = inputString;
   }
 
-  public String reverseOnlyOneWord(String word) {
-    char[] chars = word.toCharArray();
+  public String reverseAllInputtedWords() {
+    String resultStringOfWords = "";
+    String[] splittedWordsList = inputString.split(" ");
 
-    int j = word.length() - 1;
-    for (int i = 0; i < word.length(); i++) {
-      if (Character.isLetterOrDigit(word.charAt(i))) {
-        while (!Character.isLetterOrDigit(word.charAt(j))) {
-          j--;
-        }
-        chars[j] = word.charAt(i);
-        j--;
-      }
-
+    for (int i = 0; i < splittedWordsList.length; i++) {
+      resultStringOfWords += " " + (reverseInputWord(splittedWordsList[i]));
     }
-    return new String(chars);
+    return resultStringOfWords;
   }
 
-  public String reverseAndSplitTheText(String s) {
-    StringBuilder result = new StringBuilder();
-    for (String word : s.split(" ")) {
+  private String reverseInputWord(String word) {
+    char[] charArray = word.toCharArray();
+    int forefrontPosition = 0;
+    int backgroundPosition = charArray.length - 1;
 
-      StringBuilder temp = new StringBuilder(word.replaceAll("[\\W\\d+]", "")).reverse();
-
-      for (int i = 0; i < word.length(); i++) {
-        if (!Character.isLetter(word.charAt(i))) {
-          temp.insert(i, word.charAt(i));
+    while (forefrontPosition < backgroundPosition) {
+      if (Character.isLetter(charArray[forefrontPosition])) {
+        if (Character.isLetter(charArray[backgroundPosition])) {
+          replaceCharacters(charArray, forefrontPosition, backgroundPosition);
+          backgroundPosition--;
+          forefrontPosition++;
+        } else {
+          backgroundPosition--;
         }
+      } else {
+        forefrontPosition++;
       }
-      result.append(temp).append(" ");
     }
-    return result.toString();
+    return new String(charArray);
+  }
+
+  private void replaceCharacters(char[] charArray, int frontPosition, int backPosition) {
+    char chars = charArray[frontPosition];
+    charArray[frontPosition] = charArray[backPosition];
+    charArray[backPosition] = chars;
   }
 }
