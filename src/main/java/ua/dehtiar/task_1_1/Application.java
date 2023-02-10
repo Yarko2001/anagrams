@@ -5,13 +5,13 @@ package ua.dehtiar.task_1_1;
  */
 public class Application {
 
-  private String inputString;
+//  private String inputString;
+//
+//  public Application(String inputString) {
+//    this.inputString = inputString;
+//  }
 
-  public Application(String inputString) {
-    this.inputString = inputString;
-  }
-
-  public String reverseAllInputtedWords() {
+  public String reverseAllInputtedWords(String inputString) {
     String resultStringOfWords = "";
     String[] splittedWordsList = inputString.split(" ");
 

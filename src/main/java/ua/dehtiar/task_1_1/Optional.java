@@ -8,8 +8,8 @@ public class Optional {
 
 
   public static void main(String[] args) {
-    Application app = new Application("a1bcd efg!h");
-    System.out.println(app.reverseAllInputtedWords());
+    Application app = new Application();
+    System.out.println(app.reverseAllInputtedWords("a1bcd efg!h"));
 
   }
 }
